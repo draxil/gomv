@@ -10,6 +10,8 @@ import (
 )
 
 const InvalidCrossDevice = "invalid cross-device link"
+const CrossDevice = "cross-device link"
+
 var (
 	DestDirErr = errors.New("Desination can't be a directory")
 	SourceDirErr = errors.New("Desination can't be a directory")
@@ -49,7 +51,7 @@ func MoveFile(source string, dest string) (error) {
 	}
 
 	switch li.Err.Error() {
-	case InvalidCrossDevice: 
+	case InvalidCrossDevice, CrossDevice: 
 		return cpmv( source, dest, si )
 	}
 	
