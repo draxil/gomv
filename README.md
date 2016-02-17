@@ -5,7 +5,9 @@ Move files in go without caring about whether it's possible to do this as a rean
 Ex:
 
 > import "github.com/draxil/gomv"
+
 > ....
+
 > err := gomv.MoveFile(filea, fileb)
 
 # details
@@ -20,3 +22,6 @@ So far I have tested this moving accross devices in Linux and OSX. To really get
 * some better way to simulate the errors for a better default test
 * Windows..
 * More errors which would block a rename.
+
+---
+[![GoDoc](https://godoc.org/github.com/draxil/gomv?status.svg)](https://godoc.org/github.com/draxil/gomv)
