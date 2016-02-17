@@ -1,22 +1,26 @@
+// gomv - move files without caring if we're moving to another device
 package gomv
 
 import (
-//	"fmt"
 	"os"
 	"errors"
 	"io"
-//	"log"
-//	"path/filepath"
 )
 
-const InvalidCrossDevice = "invalid cross-device link"
-const CrossDevice = "cross-device link"
+const invalidCrossDevice = "invalid cross-device link"
+const crossDevice = "cross-device link"
 
 var (
+	/* Error where destination is a directory */
 	DestDirErr = errors.New("Desination can't be a directory")
 	SourceDirErr = errors.New("Desination can't be a directory")
 )
 
+/* Move source file to dest :
+
+Will try to rename the file, if that fails in a way we recognise as an OS restriction we'll copy the file and then remove the original.
+
+*/
 func MoveFile(source string, dest string) (error) {
 
 	di, err := os.Stat(dest)
@@ -51,7 +55,7 @@ func MoveFile(source string, dest string) (error) {
 	}
 
 	switch li.Err.Error() {
-	case InvalidCrossDevice, CrossDevice: 
+	case invalidCrossDevice, crossDevice: 
 		return cpmv( source, dest, si )
 	}
 	
