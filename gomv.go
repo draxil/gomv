@@ -1,4 +1,4 @@
-// gomv - move files without caring if we're moving to another device
+// Package gomv: move files without caring if we're moving to another device etc.
 package gomv
 
 import (
@@ -11,15 +11,13 @@ const invalidCrossDevice = "invalid cross-device link"
 const crossDevice = "cross-device link"
 
 var (
-	/* Error where destination is a directory */
-	DestDirErr = errors.New("Desination can't be a directory")
-	SourceDirErr = errors.New("Desination can't be a directory")
+	/* ErrDestDir : where destination is a directory */
+	ErrDestDir = errors.New("Desination file can't be a directory")
+	/* ErrSourceDir : where source is a directory */
+	ErrSourceDir = errors.New("Source file can't be a directory")
 )
 
-/* Move source file to dest :
-
-Will try to rename the file, if that fails in a way we recognise as an OS restriction we'll copy the file and then remove the original.
-
+/* MoveFile : move source file to dest file. Will try to rename the file, if that fails in a way we recognise as an OS restriction we'll copy the file and then remove the original.
 */
 func MoveFile(source string, dest string) (error) {
 
@@ -30,7 +28,7 @@ func MoveFile(source string, dest string) (error) {
 	} 
 	
 	if err == nil && di.IsDir() {
-		return DestDirErr
+		return ErrDestDir
 	}
 
 	si, err := os.Stat(source)
@@ -38,7 +36,7 @@ func MoveFile(source string, dest string) (error) {
 		return errors.New("Cannot stat source file: " + err.Error())
 	}
 	if err == nil && si.IsDir() {
-		return SourceDirErr
+		return ErrSourceDir
 	}
 
 	err = os.Rename(source, dest)
