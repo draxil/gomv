@@ -18,10 +18,10 @@ So far I have tested this moving accross devices in Linux and OSX. To really get
 
 # TODO
 
-* travisci test setup with a fuse filesystem to trigger the behaviour
 * some better way to simulate the errors for a better default test
 * Windows..
 * More errors which would block a rename.
 
 ---
 [![GoDoc](https://godoc.org/github.com/draxil/gomv?status.svg)](https://godoc.org/github.com/draxil/gomv)
+[![Build Status](https://travis-ci.org/draxil/gomv.svg?branch=master)](https://travis-ci.org/draxil/gomv)
