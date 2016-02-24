@@ -1,11 +1,13 @@
 language: go
 go:
   - 1.4
+sudo: true
 addons:
    apt:
      packages:
       - sshfs
 before_install:
+  - sudo usermod -a -G fuse $USER
   - ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ""
   - touch ~/.ssh/authorized_keys
   - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
