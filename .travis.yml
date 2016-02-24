@@ -1,0 +1,17 @@
+language: go
+go:
+  - 1.4
+addons:
+   apt:
+     packages:
+      - sshfs
+before_install:
+  - ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ""
+  - touch ~/.ssh/authorized_keys
+  - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+  - mkdir x
+  - mkdir y
+  - sshfs x localhost:y
+env:
+  - GOMV_TEST_CROSS_VOLUME_UNIX_TARGET=~/x
+  
