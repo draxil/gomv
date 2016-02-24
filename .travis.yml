@@ -10,6 +10,7 @@ before_install:
   - sudo usermod -a -G fuse $USER
   - ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ""
   - touch ~/.ssh/authorized_keys
+  - touch ~/.ssh/known_hosts
   - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   - echo localhost `cat /etc/ssh/ssh_host_ecdsa_key.pub` >> .ssh/known_hosts
   - mkdir x
