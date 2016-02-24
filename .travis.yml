@@ -11,6 +11,7 @@ before_install:
   - ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ""
   - touch ~/.ssh/authorized_keys
   - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+  - echo localhost `cat /etc/ssh/ssh_host_ecdsa_key.pub` >> .ssh/known_hosts
   - mkdir x
   - mkdir y
   - sshfs x localhost:y
