@@ -13,8 +13,8 @@ before_install:
   - touch ~/.ssh/known_hosts
   - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   - echo localhost `cat /etc/ssh/ssh_host_ecdsa_key.pub` >> ~/.ssh/known_hosts
-  - mkdir x
-  - mkdir y
+  - mkdir ~/x
+  - mkdir ~/y
   - sshfs x localhost:y
 env:
   - GOMV_TEST_CROSS_VOLUME_UNIX_TARGET=~/x
